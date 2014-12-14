@@ -33,7 +33,8 @@
 //= 1.0B Added Warp to savepoint on abuse into config
 //= 2.0  (unofficial)Fixed bugs on ranking modification and 
 //		 bitwise permissions
-//= 2.0b minor fix on resetting the ladder  
+//= 2.0b minor fix on resetting the ladder
+//= 2.1 tested fix to ladder reset part
 //===== Contact Ifo: =========================================
 //= [Stolao] 
 // 	Email: Taingram11@gmail.com
@@ -59,7 +60,7 @@ OnPvpLadder:
 			mes ".....";
 			cleararray $TOPPK$[0],0,127; 					// Clears array where top rank char names are stored.
 			cleararray $TOPPK[0],0,127; 					// Clears array where top rank kill count are stored.
-			query_sql("DELETE FROM `global_acc_reg_num_db` WHERE `key` = 'pl_pkcount'"); // Clears kills saved on character variables
+			query_sql("DELETE FROM `char_reg_num_db` WHERE `key` = 'pl_pkcount'"); // Clears kills saved on character variables
 			set .@self, getcharid(3); 						// Remembers RID of current char talking to npc
 			set .@size, query_sql("select account_id from `char` where online = 1", .@aid);
 			for(set .@i,0; .@i<.@size; set .@i,.@i+1) {		// Deletes kills of online players
