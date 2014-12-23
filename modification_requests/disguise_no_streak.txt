@@ -8,6 +8,9 @@
 //= Note: This script requires PCRE to run properly.
 //= 5.0 Last update by GmOcean.
 //= 5.1 Cleaned and standardized, mostly. [Euphy]
+//= [Mods by Happy]
+//= h5.2 disable winning the next round if already won
+//	the last round.
 //============================================================
 
 prontera,160,155,4	script	Disguise Event	4_M_NFDEADMAN,{
