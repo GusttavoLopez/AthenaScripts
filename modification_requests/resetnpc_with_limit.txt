@@ -33,11 +33,11 @@ prontera,150,193,4	script	Reset Girl	4_F_TELEPORTER,{
 	switch(select("^FF3355Reset Skills:Reset Stats:Reset Both^000000:Cancel")) {
 	case 1:
 		mes "[Reset Girl]";
-		SF_ResetLimit;
 		if (Zeny < .@ResetSkill) {
 			mes "Sorry, you don't have enough Zeny.";
 			close;
 		}
+		SF_ResetLimit;
 		Zeny -= .@ResetSkill;
 		sc_end SC_ALL;
 		resetskill;
@@ -45,22 +45,22 @@ prontera,150,193,4	script	Reset Girl	4_F_TELEPORTER,{
 		close;
 	case 2:
 		mes "[Reset Girl]";
-		SF_ResetLimit;
 		if (Zeny < .@ResetStat) {
 			mes "Sorry, you don't have enough Zeny.";
 			close;
 		}
+		SF_ResetLimit;
 		Zeny -= .@ResetStat;
 		resetstatus;
 		mes "There you go!";
 		close;
 	case 3:
 		mes "[Reset Girl]";
-		SF_ResetLimit;
 		if (Zeny < .@ResetBoth) {
 			mes "Sorry, you don't have enough Zeny.";
 			close;
 		}
+		SF_ResetLimit;
 		Zeny -= .@ResetBoth;
 		sc_end SC_ALL;
 		resetskill;
@@ -73,6 +73,9 @@ prontera,150,193,4	script	Reset Girl	4_F_TELEPORTER,{
 	
 	function SF_ResetLimit {
 		if (.resetlimit && pl_resetcount <= .resetlimit) {
+			set pl_resetcount, pl_resetcount + 1;
+			return;
+		} else if (!.resetlimit) {
 			return;
 		} else {
 			mes "Sorry, you already reached the maximum reset limit of "+.resetlimit;
