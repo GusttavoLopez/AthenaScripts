@@ -28,6 +28,11 @@ prontera,150,193,4	script	Reset Girl	4_F_TELEPORTER,{
 	mes "Reset Stats: "+ .@ResetStat +"z";
 	mes "Reset Skills: "+ .@ResetSkill +"z";
 	mes "Reset Both: "+ .@ResetBoth +"z";
+	if (.resetlimit) {
+		mes "You can reset until" + .resetlimit + " times.";
+		mes "It is your numer " + pl_resetcount + " of reset";
+		next;
+	}
 	mes "Please select the service you want:";
 	next;
 	switch(select("^FF3355Reset Skills:Reset Stats:Reset Both^000000:Cancel")) {
@@ -72,7 +77,7 @@ prontera,150,193,4	script	Reset Girl	4_F_TELEPORTER,{
 	}
 	
 	function SF_ResetLimit {
-		if (.resetlimit && pl_resetcount <= .resetlimit) {
+		if (.resetlimit && pl_resetcount < .resetlimit) {
 			set pl_resetcount, pl_resetcount + 1;
 			return;
 		} else if (!.resetlimit) {
